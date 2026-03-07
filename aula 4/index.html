@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      body {
+        margin-left: 30px;
+        background-color: black;
+      }
+      body * {
+        margin-top: 20px;
+      }
+      label {
+        color: white;
+      }
+      h1 {
+        color: white;
+      }
+    </style>
+    <h1>Formulário de Candidatura</h1>
+    <form>
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" id="nome" />
+      <br />
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" />
+      <br />
+      <label for="cargo">Cargo de tecnologia:</label>
+      <select>
+        <option value="desenvolvedora">Desenvolvedora</option>
+        <option value="analista de sistemas">Analista de Sistemas</option>
+        <option value="administrador(a) de banco de dados ">
+          Administrador(a) de Banco de Dados 
+        </option>
+        <option value="testador(a)">Testador(a)</option>
+      </select>
+      <br />
+      <label for="genero">Gênero:</label>
+      <input type="radio" name="genero" id="masculino" value="masculino" />
+      <label for="genero">Masculino</label>
+      <input type="radio" name="genero" id="feminino" value="feminino" />
+      <label for="feminino">Feminino</label>
+      <input type="radio" name="genero" id="outro" value="outro" />
+      <label for="outro">Outro</label>
+      <br />
+      <label for="unidade">Unidade de interesse:</label>
+      <input type="checkbox" name="unidade" id="fortaleza" />
+      <label for="unidade">Fortaleza</label>
+      <input type="checkbox" name="unidade" id="caucaia" />
+      <label for="unidade">Caucaia</label>
+      <input type="checkbox" name="unidade" id="eusebio" />
+      <label for="unidade">Eusebio</label>
+      <br /><br />
+      <label for="maisSobre">Fale mais sobre você:</label>
+      <br />
+      <textarea rows="6" cols="30"></textarea>
+      <br />
+      <input type="submit" name="enviar" />
+    </form>
+  </body>
+</html>
