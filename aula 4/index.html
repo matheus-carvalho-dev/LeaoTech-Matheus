@@ -20,6 +20,15 @@
       h1 {
         color: white;
       }
+      input, textarea{
+        color: white;
+        background-color: black;
+        border: 2px solid white;
+      }
+      input[type="checkbox"],
+input[type="radio"] {
+  accent-color: #4CAF50; /* Changes checkmark/dot color */
+}
     </style>
     <h1>Formulário de Candidatura</h1>
     <form>
@@ -31,6 +40,7 @@
       <br />
       <label for="cargo">Cargo de tecnologia:</label>
       <select>
+        <option value="selecione">--Selecione--</option>
         <option value="desenvolvedora">Desenvolvedora</option>
         <option value="analista de sistemas">Analista de Sistemas</option>
         <option value="administrador(a) de banco de dados ">
