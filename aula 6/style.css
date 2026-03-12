@@ -1,0 +1,99 @@
+ *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+ }
+ body{
+    height: 100vh;
+    width: 100vw;
+}
+
+
+/* .box1 {
+display: block;
+background-color: lightblue ;
+width: 200px;
+height: 100px;
+margin-bottom: 20px;
+}
+
+
+
+.box2 {
+display: inline-block;
+background-color: lightgreen;
+width: 200px;
+height: 100px;
+margin-bottom: 20px;
+}
+
+
+.box3 {
+display: inline-block;
+height: 250px;
+width: 300px;
+background-color: lightcoral;
+vertical-align: top;
+} */
+
+.caixa1{
+    display: inline-block;
+    background-color: red;
+    width: 250px;
+    height: 250px;
+
+}
+.caixa2{
+    display: inline-block;
+    background-color: red;
+    width: 250px;
+    height: 250px;
+
+}
+.caixa3{
+    display: inline-block;
+    background-color: red;
+    width: 250px;
+    height: 250px;
+
+}
+.caixa4{
+    display: inline-block;
+    background-color: red;
+    width: 250px;
+    height: 250px;
+
+}
+.caixaGrande{
+    background-color: blue;
+    width: 515px;
+}
+.caixaPequena1{
+    background-color: red;
+    width: 200px;
+
+}
+.caixaPequena2{
+    background-color: red;
+    width: 300px;
+}
+.caixaPequena3{
+    background-color: red;
+    width: 400px;
+}
+.container{
+    width: 600px;
+    margin: 0 auto;
+}
+.caixa{
+    margin: 5px
+}
+.caixaPequena{
+    margin-top: 5px;
+}
+.container *{
+    border: 2px solid black;}
+    .br{
+        display: none;
+    }
