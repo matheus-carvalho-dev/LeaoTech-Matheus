@@ -48,22 +48,30 @@ h1 {
 .containerMain [data-scoreboard="botName"] {
   margin-top: 20px;
 }
+[data-escolhas=''] {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  justify-content: center;
+  justify-items: center;
+}
 [data-escolhas="resultado"] {
+  grid-column: 1/-1;
   visibility: hidden;
   display: block;
   padding: 5px 40px;
   width: fit-content;
   height: 26px;
 }
-[data-escolhas="resultado"].ganhou{
+[data-escolhas="resultado"].ganhou {
   visibility: visible;
   background-color: rgb(5, 228, 5);
 }
-[data-escolhas="resultado"].empate{
+[data-escolhas="resultado"].empate {
   visibility: visible;
   background-color: grey;
 }
-[data-escolhas="resultado"].perdeu{
+[data-escolhas="resultado"].perdeu {
   visibility: visible;
   background-color: red;
 }
