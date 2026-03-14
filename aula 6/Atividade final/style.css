@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+body {
+  width: 100vw;
+  background-color: #f7f4ef;
+}
+body::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+header {
+  background-color: #a83232;
+  text-align: center;
+  padding: 20px;
+}
+header h1 {
+  color: white;
+  font-size: 36px;
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap:35px
+}
+header nav a {
+  color: white;
+  border: 1px solid white;
+  padding: 10px;
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+a {
+  font-size: 18px;
+}
+h2 {
+  color: #a83232;
+  font-size: 28px;
+}
+h3 {
+  font-size: 22px;
+}
+#dicas {
+  flex: 2;
+}
+.section {
+  padding: 20px;
+  margin: 20px 0;
+  border: 2px solid #d9c2a7;
+  border-radius: 12px;
+}
+#introducao {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: row;
+}
+#introducao article{
+    place-self: center;
+}
+#introducao img{
+    border:3px solid #a83232;
+}
+#dicas {
+  grid-column: 1 / -1;
+}
+#sugestao {
+  grid-column: 1 / -1;
+}
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.cards * {
+  background-color: #fff4e8;
+}

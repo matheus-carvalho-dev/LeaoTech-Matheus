@@ -11,9 +11,9 @@
     <h1>JOKEMPO</h1>
     <div class="containerMain">
             <p data-scoreboard="botName">Computador
-            <span data-scoreboard="botWins">: 0</span></p>
+            <span data-scoreboard="botWins"></span></p>
             <p data-scoreboard="playerName">Você
-            <span data-scoreboard="playerWins">: 0</span></p>
+            <span data-scoreboard="playerWins"></span></p>
         <h2>Faça sua escolha</h2>
         <div data-choose="">
             <button value="1"><img src="./img/pedra.png" alt="pedra"></button>
@@ -21,14 +21,17 @@
             <button value="3"><img src="./img/tesoura.png" alt="tesoura"></button>
         </div>
         <div data-escolhas="">
-        <p>Você escolheu</p>
-        <p>Bot escolheu</p>
+        <p data-escolhas="playerChoose">Você escolheu</p>
+        <p data-escolhas="botChoose">Bot escolheu</p>
         <img data-escolhas="imgPlayer" src="./img/papel.png">
         <img data-escolhas="imgBot" src="./img/papel.png">
         <p data-escolhas="resultado"></p>
         </div>
     </div>
     </div>
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
+
 </html>
+
+/\w/g

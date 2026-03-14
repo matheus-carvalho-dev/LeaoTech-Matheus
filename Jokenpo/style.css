@@ -54,6 +54,7 @@ h1 {
   gap: 20px;
   justify-content: center;
   justify-items: center;
+  text-align: center;
 }
 [data-escolhas="resultado"] {
   grid-column: 1/-1;
@@ -75,3 +76,21 @@ h1 {
   visibility: visible;
   background-color: red;
 }
+[data-escolhas=""]{
+  visibility: hidden;
+  [data-escolhas="playerChoose"],[data-escolhas="botChoose"],
+  [data-escolhas="imgPlayer"],
+  [data-escolhas="imgBot"]{
+    display: none;
+  }
+}
+[data-escolhas=""].ativo{
+  visibility: visible;
+  [data-escolhas="playerChoose"],[data-escolhas="botChoose"],
+  [data-escolhas="imgPlayer"],
+  [data-escolhas="imgBot"]{
+    display: block;
+  }
+}
+
+
