@@ -1,0 +1,36 @@
+p, #logo{
+    font-family: Roboto;
+}
+ul *, a{
+    font-family: 'Inter', sans-serif;
+    margin: 0 5px;
+}
+h2{
+    font-family: 'Amatic SC', monospace;
+}
+#heroTitle{
+    font-size: 4rem;
+}
+#logo{
+    font-size: 2rem;
+}
+#home{
+    background-color: #f2f2f2;
+    min-height: 60vh;
+}
+.section{
+    margin: 60px 0;
+}
+.carousel-indicators [data-bs-target] {
+    background-color: #242323; 
+    opacity: 0.5; 
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+
+.carousel-indicators .active {
+    background-color: #bd0c0c; 
+    opacity: 1;
+}

@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+  </head>
+
+  <body class="container-fluid">
+    <header class="container">
+      <nav class="navbar navbar-expand-lg nav-custo" data-bs-theme="light">
+        <div class="container-fluid">
+          <a id="logo" class="navbar-brand fw-bold" href="#"
+            >Yummy<span class="text-danger">.</span></a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
+              <li class="nav-item">
+                <a style="color: rgb(187, 187, 187)" class="nav-link" href="#"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a style="color: rgb(187, 187, 187)" class="nav-link" href="#"
+                  >About</a
+                >
+              </li>
+              <li class="nav-item">
+                <a style="color: rgb(187, 187, 187)" class="nav-link" href="#"
+                  >Menu</a
+                >
+              </li>
+              <li class="nav-item">
+                <a style="color: rgb(187, 187, 187)" class="nav-link" href="#"
+                  >Events</a
+                >
+              </li>
+              <li class="nav-item">
+                <a style="color: rgb(187, 187, 187)" class="nav-link" href="#"
+                  >Chefs</a
+                >
+              </li>
+              <li class="nav-item">
+                <a style="color: rgb(187, 187, 187)" class="nav-link" href="#"
+                  >Gallery</a
+                >
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  style="color: rgb(187, 187, 187)"
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      style="color: rgb(187, 187, 187)"
+                      class="dropdown-item"
+                      href="#"
+                      >Action</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      style="color: rgb(187, 187, 187)"
+                      class="dropdown-item"
+                      href="#"
+                      >Another action</a
+                    >
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a
+                      style="color: rgb(187, 187, 187)"
+                      class="dropdown-item"
+                      href="#"
+                      >Something else here</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a
+                  style="
+                    text-decoration: underline red 2px;
+                    text-underline-offset: 8px;
+                  "
+                  class="nav-link link-underline-danger"
+                  href="#"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+            <button class="btn btn-danger rounded-pill" type="submit">
+              Book a Table
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section id="home" class="container-fluid p-5">
+        <div class="row align-items-center p-5">
+          <div class="col-5">
+            <div class="d-flex flex-column text-start">
+              <h2 id="heroTitle">Enjoy Your Healthy Delicious Food</h2>
+            </div>
+            <div>
+              <p>
+                We are a team of talented designers making websites with
+                Bootstrap
+              </p>
+            </div>
+            <div>
+              <button class="btn btn-danger rounded-pill">Book a Table</button>
+              <button
+                class="btn align-items-center d-inline-flex gap-2 fw-medium"
+              >
+                <i class="bi bi-play-circle fs-3 text-danger"></i>Watch Video
+              </button>
+            </div>
+          </div>
+          <div class="col-5 offset-2 h-100">
+            <img class="h-50" src="imgs/menu-item-1.png" />
+          </div>
+        </div>
+      </section>
+      <section class="section" id="sobre">
+        <div class="container gx-0">
+          <div class="d-flex flex-column text-center">
+            <p>About Us</p>
+            <h2>Learn More <span class="text-danger">About Us</span></h2>
+          </div>
+          <div class="row">
+            <div class="col-7">
+              <div class="text-center">
+                <img src="img/about.jpg" class="w-100" />
+                <button
+                  class="btn btn-light w-100 mt-4 border border-secondary border-5 rounded-0 align-items-center"
+                >
+                  <div class="d-flex flex-column">
+                    <p class="text-dark fw-bold fs-6 m-0">Book a Table</p>
+                    <p class="text-danger fw-bold m-0 fs-5">+1 5589 55488 55</p>
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div class="col-5 px-5">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+              <ul class="list-unstyled">
+                <li class="d-flex">
+                  <i class="bi bi-check-circle-fill text-danger"></i>
+                  Ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </li>
+                <li class="d-flex">
+                  <i class="bi bi-check-circle-fill text-danger"></i>
+                  Duis aute irure dolor in reprehenderit in voluptate velit.
+                </li>
+                <li class="d-flex">
+                  <i class="bi bi-check-circle-fill text-danger"></i>
+                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                  aute irure dolor in reprehenderit in voluptate velit. Ullamco
+                  laboris nisi ut aliquip ex
+                </li>
+              </ul>
+              <p>
+                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                aute irure dolor in reprehenderit in voluptate trideta
+                storacalaperda mastiro dolore eu fugiat nulla pariatur.excepturi
+                sint occaecati cupiditate non provident
+              </p>
+              <img id="about2" src="img/about-2.jpg" class="img-fluid" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="sobre2">
+        <div class="container w-100">
+          <div class="row justify-content-center w-100 gy-5">
+            <div class="col-4 text-bg-danger px-4 py-4">
+              <h3 class="pb-3">Why Choose Yummy</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis
+                aute irure dolor in reprehenderit Asperiores dolores sed et.
+                Tenetur quia eos. Autem tempore quibusdam vel necessitatibus
+                optio ad corporis.
+              </p>
+              <div class="d-flex justify-content-center py-2">
+                <button
+                  class="btn btn-danger border border-light text-center alig"
+                >
+                  Learn More &gt;
+                </button>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <div
+                  class="card-body d-flex flex-column text-center justify-content-center"
+                >
+                  <i
+                    class="bi bi-clipboard-data fs-2 text-danger justify-content-center align-items-center d-inline-flex mx-auto rounded-circle"
+                    style="
+                      background-color: rgb(255, 185, 185);
+                      width: 50px;
+                      height: 50px;
+                    "
+                  ></i>
+                  <p class="fw-bold fs-5 my-3">
+                    Corporis voluptates officia eiusmod
+                  </p>
+                  <p>
+                    Consequuntur sunt aut quasi enim aliquam quae harum pariatur
+                    laboris nisi ut aliquip
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <div
+                  class="card-body d-flex flex-column text-center justify-content-center"
+                >
+                  <i
+                    class="bi bi-gem fs-2 text-danger justify-content-center align-items-center d-inline-flex mx-auto rounded-circle"
+                    style="
+                      background-color: rgb(255, 185, 185);
+                      width: 50px;
+                      height: 50px;
+                    "
+                  ></i>
+                  <p class="fw-bold fs-5 my-3">
+                    Ullamco laboris ladore lore pan
+                  </p>
+                  <p>
+                    Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <div
+                  class="card-body d-flex flex-column text-center justify-content-center"
+                >
+                  <i
+                    class="bi bi-inboxes fs-2 text-danger justify-content-center align-items-center d-inline-flex mx-auto rounded-circle"
+                    style="
+                      background-color: rgb(255, 185, 185);
+                      width: 50px;
+                      height: 50px;
+                    "
+                  ></i>
+                  <p class="fw-bold fs-5 my-3">
+                    Labore consequatur incidid dolore
+                  </p>
+                  <p>
+                    Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut
+                    maiores omnis facere
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="container-fluid align-content-center text-center"
+        style="
+          background-image:
+            linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+            url(&quot;img/stats-bg.jpg&quot;);
+          background-position: center;
+          background-size: cover;
+          min-height: 400px;
+          color: white;
+        "
+      >
+        <div class="container justify-content-center">
+          <div class="row">
+            <div class="col-3">
+              <h3 class="text-white">232</h3>
+              <p>Clients</p>
+            </div>
+            <div class="col-3">
+              <h3>521</h3>
+              <p>Projects</p>
+            </div>
+            <div class="col-3">
+              <h3>1453</h3>
+              <p>Hours Of Support</p>
+            </div>
+            <div class="col-3">
+              <h3>32</h3>
+              <p>Workers</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="menu" class="section container mx-auto">
+        <div class="d-flex flex-column text-center justify-content-center">
+          <div class="mt-5">
+            <p>Our Menu</p>
+            <h2>Check Our <span class="text-danger">Yummy Menu</span></h2>
+          </div>
+          <ul class="nav nav-underline justify-content-center my-4 gap-5">
+            <li class="nav-item">
+              <a
+                class="nav-link active fw-normal"
+                aria-current="page"
+                href="#menu"
+                >Starters</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#menu">Breakfast</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#menu">Lunch</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#menu">Dinner</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <div class="text-center">
+            <p class="text-secondary">MENU</p>
+            <h2 class="text-danger">STARTERS</h2>
+          </div>
+          <div class="row text-center px-5 mb-0">
+            <div class="col-4 p-5">
+              <img src="img/menu/menu-item-1.png" class="img-fluid" />
+              <h4>Magnam Tiste</h4>
+              <p class="text-secondary">
+                Lorem, deren, trataro, filede, nerada
+              </p>
+              <p class="text-danger fw-bold fs-4">$5.95</p>
+            </div>
+            <div class="col-4 p-5">
+              <img src="img/menu/menu-item-2.png" class="img-fluid" />
+              <h4>Magnam Tiste</h4>
+              <p class="text-secondary">
+                Lorem, deren, trataro, filede, nerada
+              </p>
+              <p class="text-danger fw-bold fs-4">$5.95</p>
+            </div>
+            <div class="col-4 p-5">
+              <img src="img/menu/menu-item-3.png" class="img-fluid" />
+              <h4>Magnam Tiste</h4>
+              <p class="text-secondary">
+                Lorem, deren, trataro, filede, nerada
+              </p>
+              <p class="text-danger fw-bold fs-4">$5.95</p>
+            </div>
+          </div>
+          <div class="row text-center px-5 mb-0">
+            <div class="col-4 p-5">
+              <img src="img/menu/menu-item-4.png" class="img-fluid" />
+              <h4>Magnam Tiste</h4>
+              <p class="text-secondary">
+                Lorem, deren, trataro, filede, nerada
+              </p>
+              <p class="text-danger fw-bold fs-4">$5.95</p>
+            </div>
+            <div class="col-4 p-5">
+              <img src="img/menu/menu-item-5.png" class="img-fluid" />
+              <h4>Magnam Tiste</h4>
+              <p class="text-secondary">
+                Lorem, deren, trataro, filede, nerada
+              </p>
+              <p class="text-danger fw-bold fs-4">$5.95</p>
+            </div>
+            <div class="col-4 p-5">
+              <img src="img/menu/menu-item-6.png" class="img-fluid" />
+              <h4>Magnam Tiste</h4>
+              <p class="text-secondary">
+                Lorem, deren, trataro, filede, nerada
+              </p>
+              <p class="text-danger fw-bold fs-4">$5.95</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="testemunhos" class="section container mx-auto">
+        <div class="d-flex flex-column text-center">
+          <p>TESTIMONIALS</p>
+          <h2>
+            WHAT ARE THEY<span class="text-danger"> SAYING ABOUT US</span>
+          </h2>
+        </div>
+        <div id="carouselExampleIndicators" class="carousel slide">
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="3"
+              aria-label="Slide 4"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div
+                class="d-flex border-start border-4 border-danger px-5 mx-5 my-5"
+              >
+                <div>
+                  <p class="fst-italic fw-bold fs-5">
+                    <i class="bi bi-quote text-danger fs-4"></i> 1Fugiat enim
+                    eram quae cillum dolore dolor amet nulla culpa multos export
+                    minim fugiat minim velit minim dolor enim duis veniam ipsum
+                    anim magna sunt elit fore quem dolore labore illum veniam.
+                    <i
+                      class="bi bi-quote text-danger fs-4"
+                      style="display: inline-block; transform: rotate(180deg)"
+                    ></i>
+                  </p>
+                  <h2 class="fs-4">Saul Goodman</h2>
+                  <p class="text-secondary fst-italic">Ceo & Founder</p>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                </div>
+                <div>
+                  <img
+                    src="img/testimonials/testimonials-4.jpg"
+                    class="rounded-circle img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div
+                class="d-flex border-start border-4 border-danger px-5 mx-5 my-5"
+              >
+                <div>
+                  <p class="fst-italic fw-bold fs-5">
+                    <i class="bi bi-quote text-danger fs-4"></i> 2Fugiat enim
+                    eram quae cillum dolore dolor amet nulla culpa multos export
+                    minim fugiat minim velit minim dolor enim duis veniam ipsum
+                    anim magna sunt elit fore quem dolore labore illum veniam.
+                    <i
+                      class="bi bi-quote text-danger fs-4"
+                      style="display: inline-block; transform: rotate(180deg)"
+                    ></i>
+                  </p>
+                  <h2 class="fs-4">Saul Goodman</h2>
+                  <p class="text-secondary fst-italic">Ceo & Founder</p>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                </div>
+                <div>
+                  <img
+                    src="img/testimonials/testimonials-4.jpg"
+                    class="rounded-circle img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div
+                class="d-flex border-start border-4 border-danger px-5 mx-5 my-5"
+              >
+                <div>
+                  <p class="fst-italic fw-bold fs-5">
+                    <i class="bi bi-quote text-danger fs-4"></i> 3Fugiat enim
+                    eram quae cillum dolore dolor amet nulla culpa multos export
+                    minim fugiat minim velit minim dolor enim duis veniam ipsum
+                    anim magna sunt elit fore quem dolore labore illum veniam.
+                    <i
+                      class="bi bi-quote text-danger fs-4"
+                      style="display: inline-block; transform: rotate(180deg)"
+                    ></i>
+                  </p>
+                  <h2 class="fs-4">Saul Goodman</h2>
+                  <p class="text-secondary fst-italic">Ceo & Founder</p>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                </div>
+                <div>
+                  <img
+                    src="img/testimonials/testimonials-4.jpg"
+                    class="rounded-circle img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div
+                class="d-flex border-start border-4 border-danger px-5 mx-5 my-5"
+              >
+                <div>
+                  <p class="fst-italic fw-bold fs-5">
+                    <i class="bi bi-quote text-danger fs-4"></i> 4Fugiat enim
+                    eram quae cillum dolore dolor amet nulla culpa multos export
+                    minim fugiat minim velit minim dolor enim duis veniam ipsum
+                    anim magna sunt elit fore quem dolore labore illum veniam.
+                    <i
+                      class="bi bi-quote text-danger fs-4"
+                      style="display: inline-block; transform: rotate(180deg)"
+                    ></i>
+                  </p>
+                  <h2 class="fs-4">Saul Goodman</h2>
+                  <p class="text-secondary fst-italic">Ceo & Founder</p>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                  <i class="bi bi-star-fill text-warning fs-3"></i>
+                </div>
+                <div>
+                  <img
+                    src="img/testimonials/testimonials-4.jpg"
+                    class="rounded-circle img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev"
+          ></button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next"
+          ></button>
+        </div>
+      </section>
+
+      <section class="section container-fluid" id="eventos">
+        <div class="row">
+          <div
+            class="col-4 d-flex flex-column justify-content-end p-4"
+            style="
+              background-image:
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 20, 0.6)),
+                url(img/events-1.jpg);
+              background-position: center;
+              background-size: cover;
+            "
+          >
+            <h2 class="text-light fs-4">Custom Parties</h2>
+            <p class="text-light fs-2 text-decoration-underline link-underline-danger link-offset-2 fw-bold">$99</p>
+            <p class="text-light m-0 text-secondary">
+              Quo corporis voluptas ea ad. Consectetur inventore sapiente ipsum
+              voluptas eos omnis facere. Enim facilis veritatis id est rem
+              repellat nulla quisquam.repellat nulla quisquam.repellat nulla quisquam.
+            </p>
+          </div>
+          <div
+            class="col-4 d-flex flex-column justify-content-end p-4"
+            style="
+              background-image:
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 20, 0.6)),
+                url(img/events-2.jpg);
+              background-position: center;
+              background-size: cover;
+              height: 600px;
+            "
+          >
+            <h2 class="text-light fs-4">Custom Parties</h2>
+            <p class="text-light fs-2 text-decoration-underline link-underline-danger link-offset-2 fw-bold">$99</p>
+            <p class="text-light m-0 text-secondary">
+              Quo corporis voluptas ea ad. Consectetur inventore sapiente ipsum
+              voluptas eos omnis facere. Enim facilis veritatis id est rem
+              repellat nulla quisquam.repellat nulla quisquam.repellat nulla quisquam.
+            </p>
+          </div>
+          <div
+            class="col-4 d-flex flex-column justify-content-end p-4"
+            style="
+              background-image:
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 20, 0.6)),
+                url(img/events-3.jpg);
+              background-position: center;
+              background-size: cover;
+            "
+          >
+            <h2 class="text-light fs-4">Custom Parties</h2>
+            <p class="text-light fs-2 text-decoration-underline link-underline-danger link-offset-2 fw-bold">$99</p>
+            <p class="text-light m-0 text-secondary">
+              Quo corporis voluptas ea ad. Consectetur inventore sapiente ipsum
+              voluptas eos omnis facere. Enim facilis veritatis id est rem
+              repellat nulla quisquam.repellat nulla quisquam.repellat nulla quisquam.
+            </p>
+          </div>
+          <div
+            class="col-4 d-flex flex-column justify-content-end p-4"
+            style="
+              background-image:
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 20, 0.6)),
+                url(img/events-4.jpg);
+              background-position: center;
+              background-size: cover;
+            "
+          >
+            <h2 class="text-light fs-4">Custom Parties</h2>
+            <p class="text-light fs-2 text-decoration-underline link-underline-danger link-offset-2 fw-bold">$99</p>
+            <p class="text-light m-0 text-secondary">
+              Quo corporis voluptas ea ad. Consectetur inventore sapiente ipsum
+              voluptas eos omnis facere. Enim facilis veritatis id est rem
+              repellat nulla quisquam.repellat nulla quisquam.repellat nulla quisquam.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      Chefs Texto pequeno: Chefs Título: Our Professional Chefs Chef 1: Walter
+      White Master Chef Texto: Velit aut quia fugit et et. Dolorum ea voluptate
+      vel tempore tenetur ipsa quae aut. Chef 2: Sarah Jhonson Patissier Texto:
+      Quo esse repellendus quia id. Est eum et accusantium pariatur fugit nihil
+      minima suscipit corporis. Chef 3: William Anderson Cook Texto: Vero omnis
+      enim consequatur. Voluptas consectetur unde qui molestiae deserunt. Book a
+      Table Texto pequeno: Book A Table Título: Book Your Stay With Us Campos:
+      Your Name Your Email Your Phone Date Time of people Message Botão: Book a
+      Table Gallery Texto pequeno: Gallery Título: Check Our Gallery Contact
+      Texto pequeno: Contact Título: Need Help? Contact Us Blocos de contato
+      Address A108 Adam Street, New York, NY 535022 Call Us +1 5589 55488 55
+      Email Us info@example.com Opening Hours Mon-Sat: 11AM - 23PM Campos do
+      formulário: Your Name Your Email Subject Message Botão: Send Message
+      Footer Logo: Yummy. Endereço: A108 Adam Street New York, NY 535022
+      Reservations: Phone: +1 5589 55488 55 Email: info@example.com Opening
+      Hours: Mon-Sat: 11AM - 23PM Sunday: Closed
+    </main>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"
+  ></script>
+</html>
