@@ -83,7 +83,6 @@
 // }
 
 // let conceito = prompt("Digite seu conceito(A, B, C ou D)");
-
 // switch (conceito) {
 //   case "A":
 //     console.log("Excelente desempenho");
@@ -126,6 +125,7 @@
 //   default:
 //     console.log("Opção invalida");
 // }
+
 // let opcao = parseInt(
 //   prompt(
 //     "Digite sua opção:\n1 - Consultar saldo \n2 - Sacar dinheiro \n3 - Depositar dinheiro",
@@ -157,11 +157,18 @@
 //   ),
 // );
 // while(opcao != 3){
+//     if(opcao == 1){
+//         console.log('Usuário cadastrado')
+
+//     }
+//     if(opcao == 2){
+//         console.log('Usuários listados')
+//     }
 //     opcao = parseInt(
 //   prompt(
 //     "Digite sua opção:\n1 - Cadastrar usuário \n2 - Listar usuários \n3 - Sair do sistema",
 //   ),
-// );  
+// );
 // }
 
 // for(numeroPedidos = 0; numeroPedidos < 3; numeroPedidos++){
@@ -170,13 +177,120 @@
 // }
 
 // let valor = parseInt(prompt('Digite o valor do produto'))
-// let parcelas = parseInt(prompt('Digite o numero de parelas'))
+// let parcelas = parseInt(prompt('Digite o numero de parcelas'))
 // for(parcela = 1; parcela <= parcelas;parcela++){
 //     console.log(`Parcela ${parcela}x tem o valor de R$${valor/parcelas}`)
 // }
 
-let quantidade = parseInt(prompt('Quantos produtos você comprou'))
-for(produto = 1;produto <= quantidade; produto++){
-    let valor = prompt
-}
+// let quantidade = parseInt(prompt('Quantos produtos você comprou'))
+// let valorTotal = 0
+// for(produto = 1;produto <= quantidade; produto++){
+//     let valor = parseInt(prompt('Digite o valor do produto'))
+//     valorTotal += valor
+// }
+// console.log(`O valor da sua compra é ${valorTotal}`);
+
+// let aprovados = 0
+// let recuperandos = 0
+// for(let alunos = 0;alunos < 10;alunos++){
+//     let notaDoAluno = parseInt(prompt('Digite a nota do aluno'))
+//     if(notaDoAluno >= 7){
+//         aprovados++
+//     }
+//     else if(notaDoAluno < 7){
+//         recuperandos++
+//     }
+//     else{
+//         console.log('Número inválido')
+//         alunos--
+//     }
+// }
+// console.log(aprovados)
+// console.log(recuperandos)
+
+// let senha = prompt("Digite a senha");
+// while (senha != 1234) {
+//   senha = prompt("Senha incorreta, digite novamente");
+// }
+// console.log("Acesso liberado");
+
+// let saldo = 1000;
+// let opcao = parseInt(
+//   prompt(
+//     "Digite sua opção:\n1 - Consultar saldo \n2 - Saca dinheiro\n3 - Depositar dinheiro\n4 - Sair do sistema",
+//   ),
+// );
+// while (opcao != 4) {
+//   switch (opcao) {
+//     case 1:
+//       console.log(`O saldo atual é ${saldo}`);
+//       break;
+//     case 2:
+//       let saque = parseInt(prompt("Valor do saque"));
+//       if (saque <= saldo) {
+//         saldo -= saque;
+//         console.log("Saque bem sucedido");
+//         console.log(`Seu saldo atual é ${saldo}`);
+//       } else if (saque > saldo) {
+//         console.log("Saldo insuficiente");
+//       } else {
+//         console.log("Valor inválido");
+//       }
+//       break;
+//     case 3:
+//       let deposito = parseInt(prompt("Valor do deposito"));
+//       saldo += deposito;
+//       console.log("Deposito bem sucedido");
+//       console.log(`Seu saldo atual é ${saldo}`);
+//       break;
+//     default:
+//       console.log("Número inválido");
+//       break;
+//   }
+//   opcao = parseInt(
+//     prompt(
+//       "Digite sua opção:\n1 - Consultar saldo \n2 - Saca dinheiro\n3 - Depositar dinheiro\n4 - Sair do sistema",
+//     ),
+//   );
+// }
+
+// let confirmacao = prompt("Registrar item?");
+// let valorTotal = 0;
+// while (confirmacao == "s") {
+//   let valor = parseInt(prompt("Digite o valor do item"));
+//   if (typeof valor == "number") {
+//     valorTotal += valor;
+//   } else {
+//     console.log("Valor inválido");
+//   }
+//   confirmacao = prompt("Registrar novo item?");
+// }
+// console.log(`O total da sua compra é ${valorTotal}`)
+
+// let numero = parseInt(prompt('Digite um número de entre 1 e 10'))
+// while(numero <= 1 || numero >= 10 ){
+//   numero = parseInt(prompt('Número inválido, digite um número de entre 1 e 10'))
+// }
+
+// let numero1 = Math.floor(Math.random() * (10 - 1)) + 1;
+// let numero2 = Math.floor(Math.random() * (10 - 1)) + 1;
+// let opcao;
+// do {
+//   numero1 = Math.floor(Math.random() * (10 - 1)) + 1;
+//   numero2 = Math.floor(Math.random() * (10 - 1)) + 1;
+//   opcao = parseInt(
+//     prompt(
+//       "Digite sua opção:\n1 - Somar números aleatórios \n2 - Subtrair números aleatórios\n3 - Sair do sistema",
+//     ),
+//   );
+//   switch (opcao) {
+//     case 1:
+//       console.log(`${numero1} + ${numero2 + 2} = ${numero1 + numero2}`);
+//       break;
+//     case 2:
+//       console.log(`${numero1} - ${numero2 + 2} = ${numero1 - numero2}`);
+//       break;
+//   }
+// } while (opcao != 3);
+
 
