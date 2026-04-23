@@ -63,11 +63,36 @@
 //   );
 // }
 
-function calcularImc(peso, altura){
-    let resultado = peso * (altura * altura)
-    console.log(resultado)
-}
+// function calcularImc(peso, altura) {
+//   let resultado = peso * (altura * altura);
+//   console.log(resultado);
+// }
 
-function verificarNome(nome, lista){  
-    
+// function verificarNome(nome, lista) {
+//   if (nome.lenght <= 15) {
+//     lista.push(nome);
+//   } else {
+//     console.log("Número muito grande");
+//   }
+// }
+
+let usuarios = [
+  { user: "maria", senha: "1234", tipo: "cliente" },
+  { user: "joao", senha: "4567", tipo: "visitante" },
+  { user: "jade", senha: "3216", tipo: "admin" },
+];
+
+const validarLogin = function(array, user, senha) {
+  let valido = false;
+  while (valido != true) {
+    for (i = 0; i < array.length; i++) {
+      if (user == array[i].user && senha == array[i].senha) {
+        return `Tipo de login: ${array[i].tipo}`;
+      } else {
+        console.log();
+        return "User ou senha errado";
+      }
+    }
+  }
 }
+console.log(validarLogin(usuarios, "maria", "1234"));
