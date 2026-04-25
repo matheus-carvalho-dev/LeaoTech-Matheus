@@ -29,11 +29,11 @@
 // btnCadastrar.addEventListener("click",cadastrarUsuario)
 // btnListar.addEventListener("click",listarUsuarios)
 
-const img = document.querySelector('img')
-const button = document.querySelector('button')
-const url = document.querySelector('#url')
-function handleClick(){
-  img.setAttribute('src',url.value)
-  console.log('È PRA TER IDO')
-}
-button.addEventListener("click",handleClick)
+// const img = document.querySelector('img')
+// const button = document.querySelector('button')
+// const url = document.querySelector('#url')
+// function handleClick(){
+//   img.setAttribute('src',url.value)
+//   console.log('È PRA TER IDO')
+// }
+// button.addEventListener("click",handleClick)
