@@ -1,20 +1,21 @@
-const inputId = document.querySelector("#id");
-const botao = document.querySelector("#botao");
-const img = document.querySelector("img");
-const titulo = document.querySelector("titulo");
-const descricao = document.querySelector("descricao");
-const preco = document.querySelector("preco");
+const inputCEP = document.querySelector("#cep")
+const inputRua = document.querySelector("#rua")
+const inputComplemento = document.querySelector("#complemento")
+const inputCidade = document.querySelector("#cidade")
+const inputEstado = document.querySelector("#estado")
+const inputRegiao = document.querySelector("#regiao")
+const confirmacao = document.querySelector("span")
 
-function handleClick() {
-  const id = inputId.value;
-  fetch(`https://fakestoreapi.com/products/${id}`)
-    .then((resp) => {
-      console.log(resp);
-      return resp.json();
-    })
-    .then(
-      (dados) => {console.log(dados.image),
-      img.setAttribute("src", dados.image)}
-    );
+let dados
+function handleInput(){
+  console.log
+  if(inputCEP.value.length == 8){
+    const cep8 = inputCEP.value
+    inputCEP.value = cep8
+    confirmacao.innerText = `Seu cep é ${inputCEP.value}`
+    fetch(`https://viacep.com.br/ws/${inputCEP.value}/json`).then(response=> {return response.json()}).then(dados => {inputRua.value = dados.logradouro,inputCidade.value = dados.localidade,inputEstado.value = dados.estado, inputRegiao.value = dados.regiao})
+
+    
+  }
 }
-botao.addEventListener("click", handleClick);
+inputCEP.addEventListener('input',handleInput)
