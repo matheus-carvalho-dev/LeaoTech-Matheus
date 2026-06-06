@@ -1,7 +1,7 @@
 const prompt = require("prompt-sync")();
-require('dotenv').config()
-const SUPABASE_URL = process.env.SUPABASE_URL
-const SUPABASE_KEY = process.env.SUPABASE_KEY
+require("dotenv").config();
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
 // let login = prompt("Digite seu login:");
 // let senha = Number(prompt("Digite seu senha:"));
@@ -117,4 +117,173 @@ async function inserirAutor() {
     .select();
   console.log(data, erro);
 }
-inserirAutor();
+
+async function inserirLivro() {
+  let titulo = prompt("Digite o titulo do livro:");
+  let quantidade = parseInt(prompt("Digite a quantidade de livros:"));
+  let genero = prompt("Digite o genero do livro:");
+  let id_autor = parseInt(prompt("Digite o id do autor:"));
+
+  let novoLivro = {
+    titulo: titulo,
+    quantidade: quantidade,
+    genero: genero,
+    id_autor: id_autor,
+  };
+  const { data, erro } = await supabase
+    .from("biblioteca_livro")
+    .insert(novoLivro)
+    .select();
+  console.log(data, erro);
+}
+
+async function inserirUsuario() {
+  let nome = prompt("Digite o nome do usuário:");
+  let idade = parseInt(prompt("Digite a idade do usuário:"));
+  let senha = prompt("Digite o senha do usuário:");
+  let email = prompt("Digite o email do usuário:");
+  let telefone = parseInt(prompt("Digite o telefone do autor:"));
+  let endereco = prompt("Digite o endereço do autor:");
+
+  let novoUsuario = {
+    nome,
+    idade,
+    senha,
+    email,
+    telefone,
+    endereco,
+  };
+  const { data, erro } = await supabase
+    .from("usuarios")
+    .insert(novoUsuario)
+    .select();
+  console.log(data, erro);
+}
+
+async function inserirAluno() {
+  let nome = prompt("Digite o nome do usuário:");
+  let cpf = parseInt(prompt("Digite o cpf do usuário:"));
+  let telefone = parseInt(prompt("Digite o telefone do usuário:"));
+  let idade = prompt("Digite a idade do usuário:");
+
+  let novoAluno = {
+    nome,
+    idade,
+    cpf,
+    telefone,
+  };
+  const { data, erro } = await supabase
+    .from("alunos")
+    .insert(novoAluno)
+    .select();
+  console.log(data, erro);
+}
+
+async function inserirCurso() {
+  let nome = prompt("Digite o nome do curso:");
+  let carga_horaria = parseInt(prompt("Digite o carga horaria do curso:"));
+  let preco = parseInt(prompt("Digite o preço do curso:"));
+  let novoCurso = {
+    nome,
+    carga_horaria,
+    preco,
+  };
+  const { data, erro } = await supabase
+    .from("curso")
+    .insert(novoCurso)
+    .select();
+  console.log(data, erro);
+}
+
+async function inserirUsuarioBiblioteca() {
+  let nome = prompt("Digite o nome do usuário:");
+  let cpf = parseInt(prompt("Digite o cpf do usuário:"));
+  let telefone = parseInt(prompt("Digite o telefone do usuário:"));
+  let endereco = prompt("Digite o endereço do usuário:");
+  let ativo =
+    prompt("Usuário está ativo? (true/false):") == "true" ? true : false;
+  let novoUsuario = {
+    nome,
+    cpf,
+    telefone,
+    endereco,
+    ativo,
+  };
+  const { data, erro } = await supabase
+    .from("biblioteca_usuarios")
+    .insert(novoUsuario)
+    .select();
+  console.log(data, erro);
+}
+
+async function inserirMatricula() {
+  let id_aluno = parseInt(prompt("Digite o id do aluno:"));
+  let id_curso = parseInt(prompt("Digite o id do curso:"));
+  let ativo =
+    prompt("Matricula está ativa? (true/false):") == "true" ? true : false;
+  let novaMatricula = {
+    id_aluno,
+    id_curso,
+    ativo,
+  };
+  const { data, erro } = await supabase
+    .from("matricula")
+    .insert(novaMatricula)
+    .select();
+  console.log(data, erro);
+}
+
+async function inserirPerfilBiblioteca() {
+  let foto = prompt("Digite o foto do perfil:");
+  let bio = prompt("Digite a bio do perfil:");
+  let preferencias = prompt("Digite o preferencias do perfil:");
+  let id_usuario = prompt("Digite o id do usuário:");
+  let novoPerfilBiblioteca = {
+    foto,
+    bio,
+    preferencias,
+    id_usuario,
+  };
+  const { data, erro } = await supabase
+    .from("biblioteca_perfil")
+    .insert(novoPerfilBiblioteca)
+    .select();
+  console.log(data, erro);
+}
+
+async function inserirEmprestimo() {
+  let id_livro = parseInt(prompt("Digite o id do livro:"));
+  let id_usuario = parseInt(prompt("Digite o id do usuario:"));
+  let data_entrega = prompt("Digite a data da entrega:");
+  let novoEmprestimo = {
+    id_livro,
+    id_usuario,
+    data_entrega,
+  };
+  const { data, erro } = await supabase
+    .from("biblioteca_emprestimo")
+    .insert(novoEmprestimo)
+    .select();
+  console.log(data, erro);
+}
+async function listarAutores() {
+  const { data, error } = await supabase
+    .from("biblioteca_autor")
+    .select("nascionalidade,nome");
+  if (error) {
+  }
+  data.forEach((autor) => {
+    console.log(`Nome: ${autor.nome}\n Nacionalidade: ${autor.nascionalidade}`);
+  });
+}
+listarAutores();
+async function buscarAutores(nome) {
+  const { data, error } = await supabase
+    .from("biblioteca_autor").select("nascionalidade,nome").eq('nome',nome);
+  if (error) {
+  }
+  data.forEach((autor) => {
+    console.log(`Nome: ${autor.nome}\n Nacionalidade: ${autor.nascionalidade}`);
+  });
+}
+buscarAutores('Tolkien');
