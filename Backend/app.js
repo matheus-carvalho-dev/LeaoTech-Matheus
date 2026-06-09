@@ -2,6 +2,7 @@ const prompt = require("prompt-sync")();
 require("dotenv").config();
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
+const bcrypt = require("bcrypt");
 
 // let login = prompt("Digite seu login:");
 // let senha = Number(prompt("Digite seu senha:"));
@@ -107,6 +108,7 @@ const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
 const { createClient } = require("@supabase/supabase-js");
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
 async function inserirAutor() {
   let nome = prompt("Digite o nome do autor:");
   let nascionalidade = prompt("Digite a nacionalidade do autor:");
@@ -202,12 +204,21 @@ async function inserirUsuarioBiblioteca() {
   let endereco = prompt("Digite o endereço do usuário:");
   let ativo =
     prompt("Usuário está ativo? (true/false):") == "true" ? true : false;
+  let senha = prompt("Digite a senha do usuário:");
+  let tipo = prompt(
+    "Digite número do tipo de usuário:\n1- Administrador\n2- Aluno",
+  );
+
+  const saltRounds = 10;
+  const senhaCrip = await bcrypt.hash(senha, saltRounds);
   let novoUsuario = {
     nome,
     cpf,
     telefone,
     endereco,
     ativo,
+    senha: senhaCrip,
+    tipo,
   };
   const { data, erro } = await supabase
     .from("biblioteca_usuarios")
@@ -215,7 +226,15 @@ async function inserirUsuarioBiblioteca() {
     .select();
   console.log(data, erro);
 }
-
+async function AtualizarUsuarioBiblioteca(id) {
+  const update = prompt("Escreva as atualizações em formato de JSON");
+  const { data, erro } = await supabase
+    .from("biblioteca_usuarios")
+    .update(JSON.parse(update))
+    .eq("id", id)
+    .select();
+  console.log(data, erro);
+}
 async function inserirMatricula() {
   let id_aluno = parseInt(prompt("Digite o id do aluno:"));
   let id_curso = parseInt(prompt("Digite o id do curso:"));
@@ -276,14 +295,113 @@ async function listarAutores() {
     console.log(`Nome: ${autor.nome}\n Nacionalidade: ${autor.nascionalidade}`);
   });
 }
-listarAutores();
+async function listarLivros() {
+  const { data, error } = await supabase.from("biblioteca_livro").select("*");
+  if (error) {
+  }
+  data.forEach((livro) => {
+    console.log(`Nome: ${livro.titulo}\n Gênero: ${livro.genero}`);
+  });
+}
+// listarAutores();
 async function buscarAutores(nome) {
   const { data, error } = await supabase
-    .from("biblioteca_autor").select("nascionalidade,nome").eq('nome',nome);
+    .from("biblioteca_autor")
+    .select("nascionalidade,nome")
+    .eq("nome", nome);
   if (error) {
   }
   data.forEach((autor) => {
     console.log(`Nome: ${autor.nome}\n Nacionalidade: ${autor.nascionalidade}`);
   });
 }
-buscarAutores('Tolkien');
+async function login() {
+  const cpf = prompt("Digite seu cpf:");
+  const senha = prompt("Digite sua senha:");
+
+  const { data, error } = await supabase
+    .from("biblioteca_usuarios")
+    .select()
+    .eq("cpf", cpf);
+  if (error) {
+    console.log(error);
+  } else if (data.length !== 0) {
+    const senhaCorreta = await bcrypt.compare(senha, data[0].senha);
+    if (senhaCorreta) {
+      console.log("Usuário logado com sucesso");
+      return data[0];
+    } else {
+      console.log("Cpf ou senha incorretos");
+    }
+  }
+}
+async function menuAdmin() {
+  let opcao;
+  do {
+    console.log("=====OPÇÕES=====");
+    console.log("1- Cadastrar novo usuário");
+    console.log("2- Cadastrar novo Autor");
+    console.log("3- Cadastrar novo Livro");
+    console.log("0- sair");
+    opcao = parseInt(prompt("Escolha uma opção:"));
+    switch (opcao) {
+      case 1:
+        await inserirUsuarioBiblioteca();
+        break;
+      case 2:
+        await inserirAutor();
+        break;
+      case 3:
+        await inserirLivro();
+        break;
+      case 0:
+        console.log("Saindo...");
+        return;
+    }
+  } while (opcao !== 0);
+}
+async function menuUser() {
+  let opcao;
+  do {
+    console.log("=====OPÇÕES=====");
+    console.log("1- Ver livros");
+    console.log("0- sair");
+    opcao = parseInt(prompt("Escolha uma opção:"));
+    switch (opcao) {
+      case 1:
+        console.log("Listando livros...");
+        await listarLivros();
+        break;
+      case 0:
+        console.log("Saindo...");
+        return;
+    }
+  } while (opcao !== 0);
+}
+async function menu() {
+  let opcao;
+  do {
+    console.log("=====OPÇÕES=====");
+    console.log("1- Logar usuário");
+    console.log("0- sair");
+    opcao = parseInt(prompt("Escolha uma opção:"));
+    switch (opcao) {
+      case 1:
+        const usuario = await login();
+        if (usuario) {
+          switch (usuario.tipo) {
+            case 1:
+              menuAdmin();
+              break;
+            case 2:
+              menuUser();
+              break;
+            default:
+              console.log("Usuário de tipo não identificado");
+          }
+        }
+    }
+  } while (opcao !== 0);
+}
+
+menu();
