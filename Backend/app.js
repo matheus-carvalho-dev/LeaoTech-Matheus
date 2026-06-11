@@ -3,7 +3,10 @@ require("dotenv").config();
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
 const bcrypt = require("bcrypt");
-
+const express = require("express");
+const { createClient } = require("@supabase/supabase-js");
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+const app = express();
 // let login = prompt("Digite seu login:");
 // let senha = Number(prompt("Digite seu senha:"));
 // let loginCorreto = "admin";
@@ -106,9 +109,6 @@ const bcrypt = require("bcrypt");
 //   }
 // }
 
-const { createClient } = require("@supabase/supabase-js");
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
 async function inserirAutor() {
   let nome = prompt("Digite o nome do autor:");
   let nascionalidade = prompt("Digite a nacionalidade do autor:");
@@ -123,7 +123,7 @@ async function inserirAutor() {
 async function inserirLivro() {
   let titulo = prompt("Digite o titulo do livro:");
   let quantidade = parseInt(prompt("Digite a quantidade de livros:"));
-  let genero = prompt("Digite o genero do livro:");
+  let genero = prompt("Digite o gênero do livro:");
   let id_autor = parseInt(prompt("Digite o id do autor:"));
 
   let novoLivro = {
@@ -295,12 +295,20 @@ async function listarAutores() {
     console.log(`Nome: ${autor.nome}\n Nacionalidade: ${autor.nascionalidade}`);
   });
 }
-async function listarLivros() {
+app.get('/listarLivros', async (req,res)=>{
   const { data, error } = await supabase.from("biblioteca_livro").select("*");
   if (error) {
   }
   data.forEach((livro) => {
-    console.log(`Nome: ${livro.titulo}\n Gênero: ${livro.genero}`);
+    console.log(`Nome: ${livro.titulo}\nGênero: ${livro.genero}`);
+  });
+})
+{
+  const { data, error } = await supabase.from("biblioteca_livro").select("*");
+  if (error) {
+  }
+  data.forEach((livro) => {
+    console.log(`Nome: ${livro.titulo}\nGênero: ${livro.genero}`);
   });
 }
 // listarAutores();
@@ -335,13 +343,15 @@ async function login() {
     }
   }
 }
-async function menuAdmin() {
+async function menuAdmin(usuario) {
   let opcao;
   do {
-    console.log("=====OPÇÕES=====");
-    console.log("1- Cadastrar novo usuário");
-    console.log("2- Cadastrar novo Autor");
-    console.log("3- Cadastrar novo Livro");
+    console.log(`=====USUÁRIO: ${usuario.nome}=====`);
+    console.log(
+      `=====OPÇÕES DE ${usuario.tipo == 1 ? "Administrador" : "Usuário"}=====`,
+    );
+    console.log("1- Cadastrar novo Autor");
+    console.log("2- Cadastrar novo Livro");
     console.log("0- sair");
     opcao = parseInt(prompt("Escolha uma opção:"));
     switch (opcao) {
@@ -360,10 +370,13 @@ async function menuAdmin() {
     }
   } while (opcao !== 0);
 }
-async function menuUser() {
+async function menuUser(usuario) {
   let opcao;
   do {
-    console.log("=====OPÇÕES=====");
+    console.log(`=====USUÁRIO: ${usuario.nome} =====`);
+    console.log(
+      `=====OPÇÕES DE ${usuario.tipo == 1 ? "ADMINISTRADOR" : "USUÁRIO"}=====`,
+    );
     console.log("1- Ver livros");
     console.log("0- sair");
     opcao = parseInt(prompt("Escolha uma opção:"));
@@ -383,6 +396,7 @@ async function menu() {
   do {
     console.log("=====OPÇÕES=====");
     console.log("1- Logar usuário");
+    console.log("2- Cadastrar usuário");
     console.log("0- sair");
     opcao = parseInt(prompt("Escolha uma opção:"));
     switch (opcao) {
@@ -391,17 +405,24 @@ async function menu() {
         if (usuario) {
           switch (usuario.tipo) {
             case 1:
-              menuAdmin();
+              await menuAdmin(usuario);
               break;
             case 2:
-              menuUser();
+              await menuUser(usuario);
               break;
             default:
               console.log("Usuário de tipo não identificado");
           }
         }
+      case 2:
+        await inserirUsuarioBiblioteca();
+        break;
+      case 0:
+        console.log("Saindo...");
+        break;
     }
   } while (opcao !== 0);
 }
-
-menu();
+app.listen(3000, () => {
+  console.log("hello world!");
+});
