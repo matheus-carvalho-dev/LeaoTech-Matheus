@@ -7,6 +7,7 @@ const express = require("express");
 const { createClient } = require("@supabase/supabase-js");
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 const app = express();
+app.use(express.json());
 // let login = prompt("Digite seu login:");
 // let senha = Number(prompt("Digite seu senha:"));
 // let loginCorreto = "admin";
@@ -197,17 +198,15 @@ async function inserirCurso() {
   console.log(data, erro);
 }
 
-async function inserirUsuarioBiblioteca() {
-  let nome = prompt("Digite o nome do usuário:");
-  let cpf = parseInt(prompt("Digite o cpf do usuário:"));
-  let telefone = parseInt(prompt("Digite o telefone do usuário:"));
-  let endereco = prompt("Digite o endereço do usuário:");
-  let ativo =
-    prompt("Usuário está ativo? (true/false):") == "true" ? true : false;
-  let senha = prompt("Digite a senha do usuário:");
-  let tipo = prompt(
-    "Digite número do tipo de usuário:\n1- Administrador\n2- Aluno",
-  );
+async function inserirUsuarioBiblioteca(dados) {
+  console.log("funcao", dados);
+  let nome = dados.nome;
+  let cpf = dados.cpf;
+  let telefone = dados.telefone;
+  let endereco = dados.endereco;
+  let ativo = dados.ativo;
+  let senha = dados.senha;
+  let tipo = dados.tipo;
 
   const saltRounds = 10;
   const senhaCrip = await bcrypt.hash(senha, saltRounds);
@@ -225,6 +224,7 @@ async function inserirUsuarioBiblioteca() {
     .insert(novoUsuario)
     .select();
   console.log(data, erro);
+  return data;
 }
 async function AtualizarUsuarioBiblioteca(id) {
   const update = prompt("Escreva as atualizações em formato de JSON");
@@ -295,23 +295,95 @@ async function listarAutores() {
     console.log(`Nome: ${autor.nome}\n Nacionalidade: ${autor.nascionalidade}`);
   });
 }
-app.get('/listarLivros', async (req,res)=>{
+app.post("/cadastrarusuario", async (req, res) => {
+  const dados = req.body;
+  console.log(dados);
+  const resultado = await inserirUsuarioBiblioteca(dados);
+  res.send(resultado);
+  console.log(resultado);
+});
+app.get("/listarlivros", async (req, res) => {
   const { data, error } = await supabase.from("biblioteca_livro").select("*");
   if (error) {
   }
   data.forEach((livro) => {
     console.log(`Nome: ${livro.titulo}\nGênero: ${livro.genero}`);
   });
-})
-{
-  const { data, error } = await supabase.from("biblioteca_livro").select("*");
+});
+app.get("/listarlivros/:id", async (req, res) => {
+  const id = req.params.id;
+  const { data, error } = await supabase
+    .from("biblioteca_livro")
+    .select("*")
+    .eq("id", id);
   if (error) {
+    res.send(`Erro: ${error}`);
+    return;
+  } else if (data.length > 0) {
+    res.json(data[0]);
+  } else {
+    res.send("Livro não encontrado");
   }
-  data.forEach((livro) => {
-    console.log(`Nome: ${livro.titulo}\nGênero: ${livro.genero}`);
-  });
-}
-// listarAutores();
+});
+app.get("/buscarlivro", async (req, res) => {
+  const titulo = req.query.titulo;
+  const { data, error } = await supabase
+    .from("biblioteca_livro")
+    .select("*")
+    .ilike("titulo", `%${titulo}%`);
+  if (error) {
+    res.send(`Erro: ${error}`);
+    return;
+  } else if (data.length > 0) {
+    res.json(data);
+  } else {
+    res.send("Livro não encontrado");
+  }
+});
+app.get("/listarautores", async (req, res) => {
+  const { data, error } = await supabase.from("biblioteca_autor").select("*");
+  if (error) {
+    res.send(`Erro: ${error}`);
+    return;
+  } else if (data.length > 0) {
+    res.json(data);
+  } else {
+    res.send("Autor não encontrado");
+  }
+});
+app.get("/listarautor/:id", async (req, res) => {
+  const id = req.params.id;
+  const { data, error } = await supabase
+    .from("biblioteca_autor")
+    .select("*")
+    .eq("id", id);
+  if (error) {
+    res.send(`Erro: ${error}`);
+    return;
+  } else if (data.length > 0) {
+    res.json(data[0]);
+  } else {
+    res.send("Autor não encontrado");
+  }
+});
+app.get("/buscarautor", async (req, res) => {
+  const nome = req.query.nome;
+  const nacionalidade = req.query.nacionalidade;
+  const { data, error } = await supabase
+    .from("biblioteca_autor")
+    .select("*")
+    .ilike("nome", `%${nome}%`)
+    .ilike("nascionalidade", `%${nacionalidade}%`);
+  if (error) {
+    res.send(`Erro: ${error}`);
+    return;
+  } else if (data.length > 0) {
+    res.json(data);
+  } else {
+    res.send("Autor não encontrado");
+  }
+});
+
 async function buscarAutores(nome) {
   const { data, error } = await supabase
     .from("biblioteca_autor")
@@ -424,5 +496,5 @@ async function menu() {
   } while (opcao !== 0);
 }
 app.listen(3000, () => {
-  console.log("hello world!");
+  console.log(`Link do sistema: http://localhost:3000`);
 });
