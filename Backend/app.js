@@ -8,6 +8,14 @@ const { createClient } = require("@supabase/supabase-js");
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 const app = express();
 app.use(express.json());
+const API_KEY = process.env.API_KEY;
+function verificarChave(chaveRecebida) {
+  if (chaveRecebida !== API_KEY) {
+    return false;
+  } else {
+    return true;
+  }
+}
 // let login = prompt("Digite seu login:");
 // let senha = Number(prompt("Digite seu senha:"));
 // let loginCorreto = "admin";
@@ -110,9 +118,9 @@ app.use(express.json());
 //   }
 // }
 
-async function inserirAutor() {
-  let nome = prompt("Digite o nome do autor:");
-  let nascionalidade = prompt("Digite a nacionalidade do autor:");
+async function inserirAutor(dados) {
+  let nome = data.nome;
+  let nascionalidade = data.nascionalidade;
   let novoAutor = { nome: nome, nascionalidade: nascionalidade };
   const { data, erro } = await supabase
     .from("biblioteca_autor")
@@ -120,12 +128,18 @@ async function inserirAutor() {
     .select();
   console.log(data, erro);
 }
-
-async function inserirLivro() {
-  let titulo = prompt("Digite o titulo do livro:");
-  let quantidade = parseInt(prompt("Digite a quantidade de livros:"));
-  let genero = prompt("Digite o gênero do livro:");
-  let id_autor = parseInt(prompt("Digite o id do autor:"));
+app.post("/cadastrarautor", async (req, res) => {
+  const dados = req.body;
+  console.log(dados);
+  const resultado = await inserirAutor(dados);
+  res.send(resultado);
+  console.log(resultado);
+});
+async function inserirLivro(dados) {
+  let titulo = dados.titulo;
+  let quantidade = dados.quantidade;
+  let genero = dados.genero;
+  let id_autor = dados.id_autor;
 
   let novoLivro = {
     titulo: titulo,
@@ -139,15 +153,40 @@ async function inserirLivro() {
     .select();
   console.log(data, erro);
 }
-
-async function inserirUsuario() {
-  let nome = prompt("Digite o nome do usuário:");
-  let idade = parseInt(prompt("Digite a idade do usuário:"));
-  let senha = prompt("Digite o senha do usuário:");
-  let email = prompt("Digite o email do usuário:");
-  let telefone = parseInt(prompt("Digite o telefone do autor:"));
-  let endereco = prompt("Digite o endereço do autor:");
-
+app.post("/cadastrarlivro", async (req, res) => {
+  const dados = req.body;
+  console.log(dados);
+  const resultado = await inserirLivro(dados);
+  res.send(resultado);
+  console.log(resultado);
+});
+app.put("/atualizarlivro/:id", async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  const atualizacoes = req.body;
+  const { data, erro } = await supabase
+    .from("biblioteca_livro")
+    .update(atualizacoes)
+    .eq("id", 1)
+    .select();
+  console.log();
+});
+app.delete("/deletarlivro/:id", async (req, res) => {
+  const id = req.params.id;
+  const atualizacoes = req.body;
+  const { data, erro } = await supabase
+    .from("biblioteca_livro")
+    .delete()
+    .eq("id", id)
+    .select();
+});
+async function inserirUsuario(dados) {
+  let nome = dados.nome;
+  let idade = dados.idade;
+  let senha = dados.senha;
+  let email = dados.email;
+  let telefone = dados.telefone;
+  let endereco = dados.endereco;
   let novoUsuario = {
     nome,
     idade,
@@ -162,12 +201,18 @@ async function inserirUsuario() {
     .select();
   console.log(data, erro);
 }
-
-async function inserirAluno() {
-  let nome = prompt("Digite o nome do usuário:");
-  let cpf = parseInt(prompt("Digite o cpf do usuário:"));
-  let telefone = parseInt(prompt("Digite o telefone do usuário:"));
-  let idade = prompt("Digite a idade do usuário:");
+app.post("/cadastrarusuario", async (req, res) => {
+  const dados = req.body;
+  console.log(dados);
+  const resultado = await inserirUsuario(dados);
+  res.send(resultado);
+  console.log(resultado);
+});
+async function inserirAluno(dados) {
+  let nome = dados.nome;
+  let cpf = dados.cpf;
+  let telefone = dados.telefone;
+  let idade = dados.idade;
 
   let novoAluno = {
     nome,
@@ -181,11 +226,18 @@ async function inserirAluno() {
     .select();
   console.log(data, erro);
 }
+app.post("/cadastraraluno", async (req, res) => {
+  const dados = req.body;
+  console.log(dados);
+  const resultado = await inserirAluno(dados);
+  res.send(resultado);
+  console.log(resultado);
+});
 
-async function inserirCurso() {
-  let nome = prompt("Digite o nome do curso:");
-  let carga_horaria = parseInt(prompt("Digite o carga horaria do curso:"));
-  let preco = parseInt(prompt("Digite o preço do curso:"));
+async function inserirCurso(dados) {
+  let nome = dados.nome;
+  let carga_horaria = dados.carga_horaria;
+  let preco = dados.preco;
   let novoCurso = {
     nome,
     carga_horaria,
@@ -197,9 +249,14 @@ async function inserirCurso() {
     .select();
   console.log(data, erro);
 }
-
+app.post("/cadastrarcurso", async (req, res) => {
+  const dados = req.body;
+  console.log(dados);
+  const resultado = await inserirCurso(dados);
+  res.send(resultado);
+  console.log(resultado);
+});
 async function inserirUsuarioBiblioteca(dados) {
-  console.log("funcao", dados);
   let nome = dados.nome;
   let cpf = dados.cpf;
   let telefone = dados.telefone;
@@ -207,7 +264,6 @@ async function inserirUsuarioBiblioteca(dados) {
   let ativo = dados.ativo;
   let senha = dados.senha;
   let tipo = dados.tipo;
-
   const saltRounds = 10;
   const senhaCrip = await bcrypt.hash(senha, saltRounds);
   let novoUsuario = {
@@ -226,6 +282,13 @@ async function inserirUsuarioBiblioteca(dados) {
   console.log(data, erro);
   return data;
 }
+app.post("/cadastrarusuariobiblioteca", async (req, res) => {
+  const dados = req.body;
+  console.log(dados);
+  const resultado = await inserirUsuarioBiblioteca(dados);
+  res.send(resultado);
+  console.log(resultado);
+});
 async function AtualizarUsuarioBiblioteca(id) {
   const update = prompt("Escreva as atualizações em formato de JSON");
   const { data, erro } = await supabase
@@ -235,11 +298,10 @@ async function AtualizarUsuarioBiblioteca(id) {
     .select();
   console.log(data, erro);
 }
-async function inserirMatricula() {
-  let id_aluno = parseInt(prompt("Digite o id do aluno:"));
-  let id_curso = parseInt(prompt("Digite o id do curso:"));
-  let ativo =
-    prompt("Matricula está ativa? (true/false):") == "true" ? true : false;
+async function inserirMatricula(dados) {
+  let id_aluno = dados.id_aluno;
+  let id_curso = dados.id_curso;
+  let ativo = dados.ativo;
   let novaMatricula = {
     id_aluno,
     id_curso,
@@ -251,7 +313,13 @@ async function inserirMatricula() {
     .select();
   console.log(data, erro);
 }
-
+app.post("/cadastrarmatricula", async (req, res) => {
+  const dados = req.body;
+  console.log(dados);
+  const resultado = await inserirMatricula(dados);
+  res.send(resultado);
+  console.log(resultado);
+});
 async function inserirPerfilBiblioteca() {
   let foto = prompt("Digite o foto do perfil:");
   let bio = prompt("Digite a bio do perfil:");
@@ -269,7 +337,13 @@ async function inserirPerfilBiblioteca() {
     .select();
   console.log(data, erro);
 }
-
+app.post("/cadastrarperfilbiblioteca", async (req, res) => {
+  const dados = req.body;
+  console.log(dados);
+  const resultado = await inserirPerfilBiblioteca(dados);
+  res.send(resultado);
+  console.log(resultado);
+});
 async function inserirEmprestimo() {
   let id_livro = parseInt(prompt("Digite o id do livro:"));
   let id_usuario = parseInt(prompt("Digite o id do usuario:"));
@@ -295,20 +369,18 @@ async function listarAutores() {
     console.log(`Nome: ${autor.nome}\n Nacionalidade: ${autor.nascionalidade}`);
   });
 }
-app.post("/cadastrarusuario", async (req, res) => {
-  const dados = req.body;
-  console.log(dados);
-  const resultado = await inserirUsuarioBiblioteca(dados);
-  res.send(resultado);
-  console.log(resultado);
-});
+
 app.get("/listarlivros", async (req, res) => {
-  const { data, error } = await supabase.from("biblioteca_livro").select("*");
-  if (error) {
+  const chaveRecebida = req.headers["api-key"];
+  if (verificarChave(chaveRecebida));
+  {
+    const { data, error } = await supabase.from("biblioteca_livro").select("*");
+    if (error) {
+    }
+    data.forEach((livro) => {
+      console.log(`Nome: ${livro.titulo}\nGênero: ${livro.genero}`);
+    });
   }
-  data.forEach((livro) => {
-    console.log(`Nome: ${livro.titulo}\nGênero: ${livro.genero}`);
-  });
 });
 app.get("/listarlivros/:id", async (req, res) => {
   const id = req.params.id;
