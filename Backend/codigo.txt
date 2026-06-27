@@ -1,3 +1,129 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+atividade.js
+backend/app.js
+backend/package.json
+eslint.config.js
+index.html
+package.json
+public/user.png
+README.md
+src/App.jsx
+src/main.jsx
+vite.config.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.env
+</file>
+
+<file path="atividade.js">
+const prompt = require("prompt-sync")();
+require("dotenv").config();
+const SUPABASE_URL = process.env.SUPABASE_URL_ATIVIDADE;
+const SUPABASE_KEY = process.env.SUPABASE_KEY_ATIVIDADE;
+const bcrypt = require("bcrypt");
+const { createClient } = require("@supabase/supabase-js");
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+async function inserirCliente() {
+  let nome = prompt("Digite o nome do autor:");
+  let nascionalidade = prompt("Digite a nacionalidade do autor:");
+  let novoAutor = { nome: nome, nascionalidade: nascionalidade };
+  const { data, erro } = await supabase
+    .from("biblioteca_autor")
+    .insert(novoAutor)
+    .select();
+  console.log(data, erro);
+}
+async function listarLivros() {
+  const { data, error } = await supabase.from("biblioteca_livro").select("*");
+  if (error) {
+  }
+  data.forEach((livro) => {
+    console.log(`Nome: ${livro.titulo}\nGênero: ${livro.genero}`);
+  });
+}
+async function AtualizarUsuarioBiblioteca(id) {
+  const update = prompt("Escreva as atualizações em formato de JSON");
+  const { data, erro } = await supabase
+    .from("biblioteca_usuarios")
+    .update(JSON.parse(update))
+    .eq("id", id)
+    .select();
+  console.log(data, erro);
+}
+</file>
+
+<file path="backend/app.js">
 const prompt = require("prompt-sync")();
 
 require("dotenv").config();
@@ -384,8 +510,7 @@ app.post("/login", async (req, res) => {
     .eq("cpf", cpf);
 
   if (error) {
-    console.error("ERRO SUPABASE:", error); 
-    return res.status(500).json({ error: error.message });
+    return res.status(401).json({ error: `${error}` });
   }
   if (data.length == 0) {
     return res.status(404).json({ error: "Cpf não encontrado" });
@@ -397,7 +522,7 @@ console.log(usuario)
   if (!senhaCorreta) {
     return res.json({ error: false });
   }
-  const token = await jwt.sign(
+  const token = jwt.sign(
     {
       id: usuario.id,
       nome: usuario.nome,
@@ -428,3 +553,262 @@ function autenticaToken(req,res,next){
 app.listen(3000, () => {
   console.log("Servidor rodando na porta 3000");
 });
+</file>
+
+<file path="backend/package.json">
+{
+  "name": "react",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite & node --watch app.js",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.107.0",
+    "bcrypt": "^6.0.0",
+    "bootstrap": "^5.3.8",
+    "cores": "^0.8.5",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "prompt-sync": "^4.2.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/react": "^19.2.14",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^10.2.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.5.0",
+    "vite": "^8.0.10"
+  },
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "main": "eslint.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+</file>
+
+<file path="eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{js,jsx}'],
+    extends: [
+      js.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      globals: globals.browser,
+      parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+  },
+])
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="package.json">
+{
+  "name": "react",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite & node --watch app.js",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.107.0",
+    "bcrypt": "^6.0.0",
+    "bootstrap": "^5.3.8",
+    "cores": "^0.8.5",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "prompt-sync": "^4.2.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/react": "^19.2.14",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^10.2.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.5.0",
+    "vite": "^8.0.10"
+  },
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "main": "eslint.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+</file>
+
+<file path="README.md">
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+</file>
+
+<file path="src/App.jsx">
+import { useState } from "react";
+
+async function login(event) {
+  const data = await fetch(`http://localhost:3000/login`);
+  const json = data.json();
+}
+function App() {
+  const [cpf, setCpf] = useState("");
+  const [senha, setSenha] = useState("");
+  async function fazerLogin(e) {
+    const credenciais = JSON.stringify({ cpf, senha });
+    e.preventDefault();
+    console.log(credenciais);
+
+    const resposta = await fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: credenciais,
+    });
+    console.log(resposta);
+  }
+  return (
+    <>
+      <main
+        className="d-flex justify-content-around align-content-center"
+        style={{
+          height: "100vh",
+          margin: "-8px",
+        }}
+      >
+        <div
+          className="bg-dark d-flex justify-content-between align-content-center flex-column rounded-5 h-75"
+          style={{
+            margin: "12vh 40px",
+            padding: "15px 20px",
+          }}
+        >
+          <div className="d-flex flex-column justify-content-around h-100 m-5 px-5 mx-1">
+            <div
+              className="bg-light rounded-circle d-flex justify-content-center"
+              style={{ padding: "20px" }}
+            >
+              <img
+                style={{ width: "150px", height: "150px" }}
+                src="./user.png"
+              />
+            </div>
+            <form onSubmit={fazerLogin} className="d-flex flex-column gap-2">
+              <div className=" d-flex flex-column">
+                <label className="text-light fw-bold" htmlFor="cpf">
+                  Cpf
+                </label>
+                <input
+                  type="text"
+                  id="cpf"
+                  name="cpf"
+                  value={cpf}
+                  onChange={(event) => {
+                    setCpf(event.currentTarget.value);
+                  }}
+                />
+              </div>
+              <div className="d-flex flex-column mb-0">
+                <label className="text-light fw-bold" htmlFor="senha">
+                  Senha
+                </label>
+                <input
+                  type="password"
+                  id="senha"
+                  name="senha"
+                  value={senha}
+                  onChange={(event) => {
+                    setSenha(event.currentTarget.value);
+                  }}
+                />
+              </div>
+              <button className="btn btn-info w-100 h-100 mt-4" type="submit">
+                Logar
+              </button>
+            </form>
+            <div></div>
+          </div>
+        </div>
+      </main>
+    </>
+  );
+}
+
+export default App;
+</file>
+
+<file path="src/main.jsx">
+import { StrictMode } from 'react'
+import App from './App'
+import { createRoot } from 'react-dom/client'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+createRoot(document.getElementById('root')).render(
+ <App/>
+)
+</file>
+
+<file path="vite.config.js">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})
+</file>
+
+</files>
